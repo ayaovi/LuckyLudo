@@ -31,19 +31,19 @@ function preload() {
          */
         var http = new XMLHttpRequest();
 
-        http.open('HEAD', luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_IMAGE, false);
+        http.open('HEAD', luckyLudo.config.DEFAULT_CANVAS_BACKGROUND_IMAGE, false);
         http.send();
 
         if (http.status != 404) {
-            luckyDivisor.global.img = loadImage(luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_IMAGE);
+            luckyLudo.global.img = loadImage(luckyLudo.config.DEFAULT_CANVAS_BACKGROUND_IMAGE);
 
             /**
              * We will use this variable later to decided whether to load an image for the background or a plain dark gray colour.
              */
-            luckyDivisor.global.imageAvailable = true;
+            luckyLudo.global.imageAvailable = true;
         }
     } catch (err) {
-        luckyDivisor.global.imageAvailable = false;
+        luckyLudo.global.imageAvailable = false;
     }
 }
 
@@ -57,8 +57,8 @@ function preload() {
  * @return none.
  */
 function mouseClicked() {
-    if (luckyDivisor.global.newGameButton) {
-        luckyDivisor.global.newGameButton.mouseClick(mouseX, mouseY);
+    if (luckyLudo.global.newGameButton) {
+        luckyLudo.global.newGameButton.mouseClick(mouseX, mouseY);
     }
 }
 
@@ -73,17 +73,17 @@ function mouseClicked() {
  *
  * @return none.
  */
-function keyPressed() {
-    /**
-     * Check whether the key pressed is SPACE_BAR
-     */
-    if (keyCode == luckyDivisor.config.gameControls[0]) {
-        /**
-         * If so, pause or play the game.
-         */
-        luckyDivisor.util.game.pauseOrPlay();
-    }
-}
+// function keyPressed() {
+//     /**
+//      * Check whether the key pressed is SPACE_BAR
+//      */
+//     if (keyCode == luckyLudo.config.gameControls[0]) {
+//         /**
+//          * If so, pause or play the game.
+//          */
+//         luckyLudo.util.game.pauseOrPlay();
+//     }
+// }
 
 
 
@@ -95,22 +95,16 @@ function keyPressed() {
  * @return none.
  */
 function setup() {
-    luckyDivisor.util.initialiseHTMLContainer();
+    luckyLudo.util.initialiseHTMLContainer();
 
-    var gameCanvas = createCanvas(luckyDivisor.config.WIDTH_OF_GAME_FRAME, luckyDivisor.config.HEIGHT_OF_CANVAS);
+    var gameCanvas = createCanvas(luckyLudo.config.WIDTH_OF_GAME_FRAME, luckyLudo.config.HEIGHT_OF_GAME_FRAME);
 
     /**
      * This is important for the canvas to be displayed at the right location.
      */
     gameCanvas.parent('gameCanvasContainer');
-
-    luckyDivisor.util.initialiseCubeColourMap();
-    luckyDivisor.util.initialisePnCubeCreationRecord();
-    luckyDivisor.util.initPlayerData();
-    luckyDivisor.util.createGameComponents();
-    luckyDivisor.config.gameStatus = "Running";
-    luckyDivisor.global.numberOfPlay = 0;
-    luckyDivisor.util.game.startNewPlay();
+    console.log(width + " " + height);
+    console.log( + " " + height);
 }
 
 
@@ -123,11 +117,5 @@ function setup() {
  * @return none.
  */
 function draw() {
-    luckyDivisor.util.drawCanvasBackground();
-    luckyDivisor.util.checkForRunningClock();
-    luckyDivisor.util.showGameComponents();
-    luckyDivisor.util.checkForPnCubeCollection();
-    luckyDivisor.util.checkAndProcessNextEvent();
-    luckyDivisor.util.checkForTimeOut();
-    luckyDivisor.util.checkIfGamePaused();
+    luckyLudo.util.drawCanvasBackground();
 }
